@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/CourseDAO.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/list_course.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/LogoutController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/AssessmentController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/Grade.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/User.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/UserDAO.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/AssessmentDAO.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/ClassEntity.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/Course.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/StudentClass.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/StudentGradeController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dto/StudentCourseInfo.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/LoginController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/add_grade.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/index.html</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/student_grade.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/Role.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/assessments.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/DBUtils.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/CourseController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/login.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/Assessment.java</file>
+        </group>
+    </open-files>
+</project-private>
