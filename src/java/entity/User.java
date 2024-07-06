@@ -4,16 +4,28 @@
  */
 package entity;
 
-
 public class User {
+
     private int userId;
     private String username;
+    private int studentClassId;
     private String password;
     private String fullName;
+    private String rollNumber;
     private String email;
     private int roleId;
 
     public User() {
+    }
+
+    public User(int userId, int studentClassId, String username, String rollNumber, String fullName, String email, int roleId) {
+        this.userId = userId;
+        this.studentClassId = studentClassId;
+        this.username = username;
+        this.fullName = fullName;
+        this.email = email;
+        this.rollNumber = rollNumber;
+        this.roleId = roleId;
     }
 
     public User(int userId, String username, String fullName, String email, int roleId) {
@@ -23,8 +35,6 @@ public class User {
         this.email = email;
         this.roleId = roleId;
     }
-    
-    
 
     public User(int userId, String username, String password, String fullName, String email, int roleId) {
         this.userId = userId;
@@ -35,6 +45,23 @@ public class User {
         this.roleId = roleId;
     }
 
+    public int getStudentClassId() {
+        return studentClassId;
+    }
+
+    public void setStudentClassId(int studentClassId) {
+        this.studentClassId = studentClassId;
+    }
+
+    public String getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(String rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    
     public int getUserId() {
         return userId;
     }
@@ -82,6 +109,5 @@ public class User {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
-    
-    
+
 }

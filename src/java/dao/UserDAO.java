@@ -113,4 +113,63 @@ public class UserDAO {
         return studentCourseInfoList;
     }
 
+    public List<User> getStudentsByClassId(int classId) throws SQLException, ClassNotFoundException {
+        List<User> students = new ArrayList<>();
+        String sql = "SELECT sc.StudentClassId, u.UserId, u.Username, u.RollNumber, u.FullName, u.Email, u.RoleId "
+                   + "FROM StudentClasses sc "
+                   + "JOIN Users u ON sc.StudentId = u.UserId "
+                   + "WHERE sc.ClassId = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection1();
+            if (conn != null) {
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, classId);
+                rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    int userId = rs.getInt("UserId");
+                    int studentClassId = rs.getInt("StudentClassId");
+                    String username = rs.getString("Username");
+                    String rollNumber = rs.getString("RollNumber");
+                    String fullName = rs.getString("FullName");
+                    String email = rs.getString("Email");
+                    int roleId = rs.getInt("RoleId");
+
+                    User user = new User(userId, studentClassId, username, rollNumber, fullName, email, roleId);
+                    students.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return students;
+    }
 }

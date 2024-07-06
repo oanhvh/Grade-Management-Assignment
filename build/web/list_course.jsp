@@ -26,6 +26,9 @@
                                         <c:if test="${sessionScope['account'].roleId == 3}">
                                         <li class="list-inline-item"><a href="studentGrade" class="text-white">Grade</a></li>
                                         </c:if>
+                                        <c:if test="${sessionScope['account'].roleId == 2}">
+                                        <li class="list-inline-item"><a href="AddGrade" class="text-white">Grade</a></li>
+                                        </c:if>
                                         <li class="list-inline-item"><a href="list_course.jsp" class="text-white">Course</a></li>
 
                                     <li class="list-inline-item"><a href="#" class="text-white">Hello, ${sessionScope['account'].fullName}</a></li>

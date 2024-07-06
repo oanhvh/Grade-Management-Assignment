@@ -26,6 +26,9 @@
                                         <c:if test="${sessionScope['account'].roleId == 3}">
                                         <li class="list-inline-item"><a href="studentGrade" class="text-white">Grade</a></li>
                                         </c:if>
+                                        <c:if test="${sessionScope['account'].roleId == 2}">
+                                        <li class="list-inline-item"><a href="AddGrade" class="text-white">Grade</a></li>
+                                        </c:if>
                                     <li class="list-inline-item"><a href="list_course.jsp" class="text-white">Course</a></li>
 
                                     <li class="list-inline-item"><a href="#" class="text-white">Hello, ${sessionScope['account'].fullName}</a></li>
@@ -43,40 +46,69 @@
         <div class="container mt-5">
 
             <div class="container">
-                <form action="submit_grades.php" method="post">
-                    <div class="scrollable-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Roll</th>
-                                    <th>Name</th>
-                                    <th>Final Project Presentation Rest</th>
-                                    <th>Implementation (Report 7)</th>
-                                    <th>Project Introduction</th>
-                                    <th>Project Management Plan</th>
-                                    <th>Software Design (Report 4)</th>
-                                    <th>Software Requirement</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>HE161216</td>
-                                    <td class="name">Trịnh Anh Đức</td>
-                                    <td><input type="number" name="grades[HE161216][final_project]" required></td>
-                                    <td><input type="number" name="grades[HE161216][implementation]" required></td>
-                                    <td><input type="number" name="grades[HE161216][project_intro]" required></td>
-                                    <td><input type="number" name="grades[HE161216][project_management]" required></td>
-                                    <td><input type="number" name="grades[HE161216][software_design]" required></td>
-                                    <td><input type="number" name="grades[HE161216][software_requirement]" required></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="form-container">
-                        <input type="submit" value="Submit Grades">
-                    </div>
+                <form action="ListGrade" method="get">
+                    <select id="classSelect" name="class" onchange="this.form.submit()">
+                        <option selected disabled>Select Class</option>
+                        <c:forEach var="o" items="${classes}">
+                            <option value="${o.classId}-${o.courseId}">${o.name} - ${o.courseCode}</option>
+                        </c:forEach>
+                    </select>
                 </form>
+
+                <c:if test="${not empty students and not empty assessments}">
+                    <form action="addgrade" method="post">
+                        <div class="scrollable-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Roll</th>
+                                        <th>Name</th>
+                                            <c:forEach var="assessment" items="${assessments}">
+                                            <th>${assessment.category}</th>
+                                            </c:forEach>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="student" items="${students}">
+                                        <tr>
+                                            <td>${student.rollNumber}</td>
+                                            <td class="name">${student.fullName}</td>
+                                            <c:forEach var="assessment" items="${assessments}">
+                                                <td>
+                                                    <c:set var="studentClassId" value="${student.studentClassId}" />
+                                                    <c:set var="assessmentId" value="${assessment.assessmentId}" />
+
+                                                    <c:set var="score" value="" />
+                                                    <c:forEach var="entry" items="${studentGrades}">
+                                                        <c:if test="${entry.key == studentClassId}">
+                                                            <c:set var="studentGradesMap" value="${entry.value}" />
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <c:forEach var="entry" items="${studentGradesMap}">
+                                                        <c:if test="${entry.key == assessmentId}">
+                                                            <c:set var="score" value="${entry.value}" />
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <input style="width: 8.5rem" min="0" max="10" type="number" name="grades[${studentClassId}][${assessmentId}]" value="${score}" required>
+
+                                                </td>
+                                            </c:forEach>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-container">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+
+                </c:if>
+                <c:if test="${empty students or empty assessments}">
+                    <p>Không tìm thấy kết quả nào</p>
+                </c:if>
             </div>
         </div>
         <!-- Footer -->
@@ -91,6 +123,14 @@
     </body>
 </html>
 <style>
+    select {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: #fff;
+        width: 200px;
+    }
     table {
         width: 100%;
         margin: 20px 0;
