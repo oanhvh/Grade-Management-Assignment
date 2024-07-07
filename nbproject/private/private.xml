@@ -4,8 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/list_course.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/entity/User.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/UserDAO.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/ListGradeController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/LoginController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/GradeDAO.java</file>
             <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/add_grade.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dto/ClassDTO.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/student_grade.jsp</file>
             <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/assessments.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/DBUtils.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/controller/AddGradeController.java</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/web/login.jsp</file>
+            <file>file:/C:/Users/hatda/OneDrive/Documents/NetBeansProjects/GradeManagementSystem/src/java/dao/ClassDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -76,18 +76,32 @@ public class UserDAO {
 
     public List<StudentCourseInfo> getStudentCourseInfo(int studentId) throws SQLException, ClassNotFoundException {
         List<StudentCourseInfo> studentCourseInfoList = new ArrayList<>();
-        String sql = "SELECT ROW_NUMBER() OVER (ORDER BY c.Semester, c.Year, co.CourseCode) AS NO, "
-                + "CONCAT(c.Semester, c.Year) AS SEMESTER, "
-                + "co.CourseCode AS SUBJECT_CODE, "
-                + "co.CourseName AS SUBJECT_NAME, "
-                + "g.Score AS GRADE, "
-                + "CASE WHEN g.Score >= 5.0 THEN 'Passed' ELSE 'Not Passed' END AS STATUS "
-                + "FROM Grades g "
-                + "JOIN StudentClasses sc ON g.StudentClassId = sc.StudentClassId "
-                + "JOIN Classes c ON sc.ClassId = c.ClassId "
-                + "JOIN Courses co ON c.CourseId = co.CourseId "
-                + "WHERE sc.StudentId = ? "
-                + "ORDER BY c.Year, c.Semester, co.CourseCode";
+        String sql = "SELECT \n"
+                + "    ROW_NUMBER() OVER (ORDER BY c.Semester, c.Year, co.CourseCode) AS NO,\n"
+                + "    CONCAT_WS(' ', c.Semester, c.Year) AS SEMESTER, \n"
+                + "    co.CourseCode AS SUBJECT_CODE,\n"
+                + "    co.CourseName AS SUBJECT_NAME,\n"
+                + "    ROUND(AVG(g.Score * a.Weight) / AVG(a.Weight), 2) AS GRADE, \n"
+                + "    CASE \n"
+                + "        WHEN ROUND(AVG(g.Score * a.Weight) / AVG(a.Weight), 2) >= 5.0 THEN 'Passed' \n"
+                + "        ELSE 'Not Passed' \n"
+                + "    END AS STATUS \n"
+                + "FROM \n"
+                + "    Grades g \n"
+                + "JOIN \n"
+                + "    StudentClasses sc ON g.StudentClassId = sc.StudentClassId \n"
+                + "JOIN \n"
+                + "    Classes c ON sc.ClassId = c.ClassId \n"
+                + "JOIN \n"
+                + "    Courses co ON c.CourseId = co.CourseId \n"
+                + "JOIN \n"
+                + "    Assessments a ON g.AssessmentId = a.AssessmentId\n"
+                + "WHERE \n"
+                + "    sc.StudentId = ?\n"
+                + "GROUP BY \n"
+                + "    c.Semester, c.Year, co.CourseCode, co.CourseName\n"
+                + "ORDER BY \n"
+                + "    c.Year, c.Semester, co.CourseCode;";
 
         try (Connection conn = DBUtils.getConnection1(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
