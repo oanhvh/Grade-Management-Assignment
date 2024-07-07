@@ -5,6 +5,7 @@
 package controller;
 
 import dao.ClassDAO;
+import dao.GradeDAO;
 import dto.ClassDTO;
 import entity.User;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,7 +76,40 @@ public class AddGradeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        GradeDAO gradeDAO = new GradeDAO();
+
+        for (String studentClassId : parameterMap.keySet()) {
+            if (studentClassId.startsWith("grades[")) {
+                int startIndex = studentClassId.indexOf("[") + 1;
+                int endIndex = studentClassId.indexOf("]");
+
+                int secondStartIndex = studentClassId.indexOf("[", endIndex) + 1;
+                int secondEndIndex = studentClassId.indexOf("]", secondStartIndex);
+
+                String studentId = studentClassId.substring(startIndex, endIndex);
+                String assessmentId = studentClassId.substring(secondStartIndex, secondEndIndex);
+
+                String scoreStr = request.getParameter(studentClassId);
+                if (scoreStr != null && !scoreStr.trim().isEmpty()) {
+                    double score = Double.parseDouble(scoreStr.trim());
+
+                    try {
+                        int studentIdInt = Integer.parseInt(studentId);
+                        int assessmentIdInt = Integer.parseInt(assessmentId);
+
+                        if (!gradeDAO.updateGrade(studentIdInt, assessmentIdInt, score)) {
+                            gradeDAO.insertGrade(studentIdInt, assessmentIdInt, score);
+
+                        }
+                    } catch (NumberFormatException | SQLException | ClassNotFoundException ex) {
+                        Logger.getLogger(AddGradeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+
+        response.sendRedirect("list_course.jsp");
     }
 
     /**
